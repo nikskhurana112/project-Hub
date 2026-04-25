@@ -1,27 +1,16 @@
 import express from 'express';
+import { getTasks, createTask, updateTask, deleteTask } from '../controllers/taskController.js';
+import protect from '../middleware/protect.js';
 
 const router = express.Router();
 
-// ---------------------------------------------------------------------------
-// All handlers will be imported from src/controllers/taskController.js
-// All routes are Private (require valid JWT via protect middleware)
-// Status values are strictly: "Todo" | "In Progress" | "Done"
-// ---------------------------------------------------------------------------
+// Apply protect middleware to ALL routes in this file
+router.use(protect);
 
-// @route   GET    /api/tasks/:projectId
-// @desc    Get all tasks belonging to a specific project
-// @access  Private
+// @route GET /api/tasks/:projectId  |  POST /api/tasks/:projectId
+router.route('/:projectId').get(getTasks).post(createTask);
 
-// @route   POST   /api/tasks/:projectId
-// @desc    Add a new task to a project
-// @access  Private
-
-// @route   PUT    /api/tasks/:id
-// @desc    Update a task's details or status
-// @access  Private
-
-// @route   DELETE /api/tasks/:id
-// @desc    Delete a task by ID
-// @access  Private
+// @route PUT /api/tasks/:id  |  DELETE /api/tasks/:id
+router.route('/:id').put(updateTask).delete(deleteTask);
 
 export default router;
