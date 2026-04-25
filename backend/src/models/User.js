@@ -32,11 +32,11 @@ const userSchema = new mongoose.Schema(
 
 // ── Hash password before saving ──────────────────────────────────────────────
 // Skips re-hashing if the password field has not been modified (e.g. on profile update)
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
+// Note: Mongoose 9 async pre-hooks do not receive a next() parameter — use return instead
+userSchema.pre('save', async function () {
+  if (!this.isModified('password')) return;
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-  next();
 });
 
 // ── Instance method: compare entered password with stored hash ────────────────

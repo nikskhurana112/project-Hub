@@ -1,21 +1,16 @@
 import express from 'express';
+import { register, login, getMe } from '../controllers/userController.js';
+import protect from '../middleware/protect.js';
 
 const router = express.Router();
 
-// ---------------------------------------------------------------------------
-// All handlers will be imported from src/controllers/userController.js
-// ---------------------------------------------------------------------------
+// @route   POST /api/users/register  — Public
+router.post('/register', register);
 
-// @route   POST /api/users/register
-// @desc    Register a new user
-// @access  Public
+// @route   POST /api/users/login     — Public
+router.post('/login', login);
 
-// @route   POST /api/users/login
-// @desc    Authenticate user and return JWT
-// @access  Public
-
-// @route   GET  /api/users/dashboard
-// @desc    Get the currently authenticated user's profile
-// @access  Private (requires JWT)
+// @route   GET  /api/users/dashboard — Private (protect runs first, then getMe)
+router.get('/dashboard', protect, getMe);
 
 export default router;
