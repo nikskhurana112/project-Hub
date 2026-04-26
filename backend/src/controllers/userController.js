@@ -73,4 +73,18 @@ const getMe = async (req, res, next) => {
   }
 };
 
-export { register, login, getMe };
+// ── @desc    Logout user ─────────────────────────────────────────────────────
+// ── @route   POST /api/users/logout ──────────────────────────────────────────
+// ── @access  Private ─────────────────────────────────────────────────────────
+// NOTE: JWTs are stateless — the server cannot invalidate a token.
+// Logout is handled on the CLIENT by discarding the token from storage.
+// This endpoint provides a clean REST action for the frontend to call.
+const logout = async (req, res, next) => {
+  try {
+    res.status(200).json({ success: true, message: 'Logged out successfully' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { register, login, getMe, logout };
