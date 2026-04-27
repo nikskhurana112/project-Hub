@@ -19,7 +19,15 @@ const register = async (req, res, next) => {
 
     // 3. Sign and return the JWT
     const token = user.getSignedJwtToken();
-    res.status(201).json({ success: true, token });
+    res.status(201).json({ 
+      success: true, 
+      token,
+      data: {
+        _id: user._id,
+        name: user.name,
+        email: user.email
+      }
+    });
   } catch (error) {
     next(error);
   }
@@ -55,7 +63,15 @@ const login = async (req, res, next) => {
 
     // 4. Sign and return the JWT
     const token = user.getSignedJwtToken();
-    res.status(200).json({ success: true, token });
+    res.status(200).json({ 
+      success: true, 
+      token,
+      data: {
+        _id: user._id,
+        name: user.name,
+        email: user.email
+      }
+    });
   } catch (error) {
     next(error);
   }
