@@ -1,0 +1,8 @@
+## AI Usage Declaration
+For this project, I utilized an AI-assisted development workflow, acting as the primary architect and orchestrator. Rather than writing every line manually, I designed the system and guided the AI to execute it according to strict professional standards. 
+
+* **Planning & Orchestration:** I began by creating a detailed `MasterImplementation.md` (masterplan) to break down the project into manageable coding phases, starting with the backend foundation. I used this document to systematically instruct the AI agents.
+* **Backend Development:** I instructed Google Antigravity to write the core application logic and Express API architecture based on my master plan. I guided the agent to follow best practices (like separation of concerns) and manually tested all backend API routes using Postman to ensure flawless execution before moving to the frontend.
+* **Frontend Development:** I utilized Google Stitch to generate the UI screens and React components. To integrate the stack, I connected Stitch using MCP (Model Context Protocol) for the Next.js frontend within Antigravity. This allowed me to instruct the AI to seamlessly wire the frontend logic to the Express backend.
+
+Throughout the development lifecycle, my role was to provide the architectural blueprint, enforce clean code standards, comprehensively test the app at each phase, and iteratively refine the output.
